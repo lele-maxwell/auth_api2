@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ProtectedApi, Configuration, User } from '../api';
 
 const protectedApi = new ProtectedApi(new Configuration({
-  basePath: 'http://localhost:3000',
+  basePath: 'authapi2-production.up.railway.app',
 }));
 
 const SESSION_DURATION_MS = 10 * 60 * 1000; // 10 minutes
@@ -46,7 +46,7 @@ export default function Profile() {
         const refreshToken = localStorage.getItem('refresh_token');
         if (refreshToken) {
           try {
-            const refreshRes = await fetch('http://localhost:3000/refresh', {
+            const refreshRes = await fetch('authapi2-production.up.railway.app/refresh', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ refresh_token: refreshToken }),

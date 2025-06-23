@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { AuthApi, Configuration } from '../api';
 
-const authApi = new AuthApi(new Configuration({ basePath: 'http://localhost:3000' }));
+const authApi = new AuthApi(new Configuration({ basePath: 'authapi2-production.up.railway.app' }));
 
 export default function Login() {
   const [email, setEmail] = useState('');

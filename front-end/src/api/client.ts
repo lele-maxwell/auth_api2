@@ -3,11 +3,11 @@ import { AuthApi, ProtectedApi } from './api';
 
 // Create API instances
 const authApi = new AuthApi(new Configuration({
-    basePath: 'http://localhost:3000',
+    basePath: 'authapi2-production.up.railway.app',
 }));
 
 const protectedApi = new ProtectedApi(new Configuration({
-    basePath: 'http://localhost:3000',
+    basePath: 'authapi2-production.up.railway.app',
 }));
 
 // Example login function
