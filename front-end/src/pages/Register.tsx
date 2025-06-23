@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthApi, Configuration } from '../api';
 
-const authApi = new AuthApi(new Configuration({ basePath: 'http://localhost:3000' }));
+const authApi = new AuthApi(new Configuration({ basePath: 'authapi2-production.up.railway.app' }));
+
+
 
 export default function Register() {
   const [firstName, setFirstName] = useState('');
