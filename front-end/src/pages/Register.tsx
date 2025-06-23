@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthApi, Configuration } from '../api';
 
-const authApi = new AuthApi(new Configuration({ basePath: 'authapi2-production.up.railway.app' }));
+const authApi = new AuthApi(new Configuration({ basePath: 'https://authapi2-production.up.railway.app' }));
 
 
 
