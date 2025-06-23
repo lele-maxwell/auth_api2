@@ -54,7 +54,7 @@ JWT_EXPIRATION=86400
 ```sh
 cargo run
 ```
-- The backend will start on `http://localhost:3000`
+- The backend will start on `authapi2-production.up.railway.app`
 
 ### 4. Run the Frontend
 ```sh
@@ -62,7 +62,7 @@ cd front-end
 npm install
 npm start
 ```
-- The frontend will start on `http://localhost:3000` or `http://localhost:3001`
+- The frontend will start on `authapi2-production.up.railway.app` or `http://localhost:3001`
 
 ---
 
