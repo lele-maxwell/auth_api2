@@ -1,3 +1,7 @@
+[![Build and Slim Docker Images](https://github.com/lele-maxwell/auth_api2/actions/workflows/docker-ghcr.yml/badge.svg)](https://github.com/lele-maxwell/auth_api2/actions/workflows/docker-ghcr.yml)  
+
+[![Build and Slim Docker Images](https://github.com/lele-maxwell/auth_api2/actions/workflows/docker-ghcr.yml/badge.svg)](https://github.com/lele-maxwell/auth_api2/actions/workflows/docker-ghcr.yml)
+
 # Auth API 2
 
 A modern fullstack authentication API project with a Rust (Axum) backend and a React (TypeScript) frontend.
