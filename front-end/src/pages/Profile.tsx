@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, MouseEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ProtectedApi, Configuration, User } from '../api';
 
-const protectedApi = new ProtectedApi(new Configuration({
-  basePath: 'https://authapi2-production.up.railway.app',
-}));
+const apiBasePath = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+const protectedApi = new ProtectedApi(new Configuration({ basePath: apiBasePath }));
 
 const SESSION_DURATION_MS = 10 * 60 * 1000; // 10 minutes
 
@@ -46,7 +45,7 @@ export default function Profile() {
         const refreshToken = localStorage.getItem('refresh_token');
         if (refreshToken) {
           try {
-            const refreshRes = await fetch('https://authapi2-production.up.railway.app/refresh', {
+            const refreshRes = await fetch(`${apiBasePath}/refresh`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ refresh_token: refreshToken }),
@@ -78,7 +77,7 @@ export default function Profile() {
     fetchUser();
   }, [navigate]);
 
-  const handleLogout = () => {
+  const handleLogout = (e?: MouseEvent<HTMLButtonElement>) => {
     localStorage.removeItem('token');
     localStorage.removeItem('loginTime');
     localStorage.removeItem('refresh_token');

@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthApi, Configuration } from '../api';
 
-const authApi = new AuthApi(new Configuration({ basePath: 'https://authapi2-production.up.railway.app' }));
-
-
+const apiBasePath = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+const authApi = new AuthApi(new Configuration({ basePath: apiBasePath }));
 
 export default function Register() {
   const [firstName, setFirstName] = useState('');
@@ -14,7 +13,7 @@ export default function Register() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleRegister = async (e: React.FormEvent) => {
+  const handleRegister = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError('');
     try {
@@ -41,7 +40,7 @@ export default function Register() {
               className="form-input"
               type="text"
               value={firstName}
-              onChange={e => setFirstName(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => setFirstName(e.target.value)}
               placeholder="Enter your first name"
               required
             />
@@ -52,7 +51,7 @@ export default function Register() {
               className="form-input"
               type="text"
               value={lastName}
-              onChange={e => setLastName(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => setLastName(e.target.value)}
               placeholder="Enter your last name"
               required
             />
@@ -63,7 +62,7 @@ export default function Register() {
               className="form-input"
               type="email"
               value={email}
-              onChange={e => setEmail(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
               placeholder="Enter your email"
               required
             />
@@ -74,7 +73,7 @@ export default function Register() {
               className="form-input"
               type="password"
               value={password}
-              onChange={e => setPassword(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
               placeholder="Choose a password"
               required
             />

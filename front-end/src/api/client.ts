@@ -2,13 +2,9 @@ import { Configuration } from './configuration';
 import { AuthApi, ProtectedApi } from './api';
 
 // Create API instances
-const authApi = new AuthApi(new Configuration({
-    basePath: 'authapi2-production.up.railway.app',
-}));
-
-const protectedApi = new ProtectedApi(new Configuration({
-    basePath: 'authapi2-production.up.railway.app',
-}));
+const apiBasePath = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+const authApi = new AuthApi(new Configuration({ basePath: apiBasePath }));
+const protectedApi = new ProtectedApi(new Configuration({ basePath: apiBasePath }));
 
 // Example login function
 async function login() {

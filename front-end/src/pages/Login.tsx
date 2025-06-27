@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { AuthApi, Configuration } from '../api';
 
-const authApi = new AuthApi(new Configuration({ basePath: 'https://authapi2-production.up.railway.app' }));
+const apiBasePath = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+const authApi = new AuthApi(new Configuration({ basePath: apiBasePath }));
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -19,7 +20,7 @@ export default function Login() {
     }
   }, [location, navigate]);
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError('');
     try {
@@ -43,7 +44,7 @@ export default function Login() {
               className="form-input"
               type="email"
               value={email}
-              onChange={e => setEmail(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
               placeholder="Enter your email"
               required
             />
@@ -54,7 +55,7 @@ export default function Login() {
               className="form-input"
               type="password"
               value={password}
-              onChange={e => setPassword(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
               placeholder="Enter your password"
               required
             />
