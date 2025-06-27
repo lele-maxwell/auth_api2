@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: auth-frontend
-          image: auth-frontend:latest
+          image: ghcr.io/lele-maxwell/auth-frontend:slim
           ports:
             - containerPort: 80
           envFrom:
