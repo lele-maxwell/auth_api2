@@ -1,106 +1,144 @@
-[![Build and Slim Docker Images](https://github.com/lele-maxwell/auth_api2/actions/workflows/docker-ghcr.yml/badge.svg)](https://github.com/lele-maxwell/auth_api2/actions/workflows/docker-ghcr.yml)  
+# 🚀 Auth API 2 - Kubernetes Deployment
 
 [![Build and Slim Docker Images](https://github.com/lele-maxwell/auth_api2/actions/workflows/docker-ghcr.yml/badge.svg)](https://github.com/lele-maxwell/auth_api2/actions/workflows/docker-ghcr.yml)
+[![Kubernetes](https://img.shields.io/badge/Kubernetes-1.28+-326CE5.svg)](https://kubernetes.io/)
 
-# Auth API 2
+A production-ready Kubernetes deployment for a fullstack authentication system with **Rust (Axum)** backend and **React (TypeScript)** frontend.
 
-A modern fullstack authentication API project with a Rust (Axum) backend and a React (TypeScript) frontend.
-
----
-
-## 🚀 Project Overview
-This project provides a secure, scalable authentication API with a beautiful, modern frontend. It is designed for learning, rapid prototyping, and as a foundation for production-ready auth systems.
-
-- **Backend:** Rust + Axum (JWT, bcrypt, RESTful API)
-- **Frontend:** React + TypeScript (responsive, glassmorphism UI)
+> 📖 **For detailed authentication features and API documentation, see: [Auth API Repository](https://github.com/lele-maxwell/auth_api.git)**
 
 ---
 
-## ✨ Features
-- User registration & login
-- JWT-based authentication
-- Protected routes (admin, profile, etc.)
-- Password hashing (bcrypt)
-- Environment-based configuration
-- Swagger/OpenAPI documentation
-- Modern, professional UI (green & soft black theme)
+## 📦 Project Structure
+
+```
+auth_api2/
+├── k8s/                         # Kubernetes manifests
+│   ├── backend-deployment.yaml  # Backend deployment configuration
+│   ├── frontend-deployment.yaml # Frontend deployment configuration
+│   ├── backend-service.yaml     # Backend service configuration
+│   ├── frontend-service.yaml    # Frontend service configuration
+│   ├── backend-configmap.yaml   # Backend configuration
+│   ├── backend-secret.yaml      # Backend secrets
+│   └── frontend-configmap.yaml  # Frontend configuration
+├── .github/workflows/           # CI/CD pipelines
+│   └── docker-ghcr.yml         # Automated Docker builds
+├── Dockerfile.backend           # Backend Docker configuration
+└── front-end/Dockerfile.frontend # Frontend Docker configuration
+```
+
+---
+
+## 🧠 What This Project Demonstrates
+
+- ✅ Kubernetes-native deployment architecture
+- ✅ Multi-container application orchestration
+- ✅ Automated CI/CD with GitHub Actions
+- ✅ Docker image optimization with Docker Slim
+- ✅ GitHub Container Registry integration
+- ✅ Production-ready K8s manifests
+- ✅ ConfigMap and Secret management
+
+---
+
+## 🛠 How to Use
+
+### 1. Clone this repository
+
+```bash
+git clone https://github.com/lele-maxwell/auth_api2.git
+cd auth_api2
+```
+
+### 2. Create Local Kubernetes Cluster (Kind)
+
+```bash
+kind create cluster --name auth-cluster
+kubectl cluster-info --context kind-auth-cluster
+```
+
+### 3. Apply Kubernetes Manifests
+
+```bash
+kubectl apply -f k8s/
+```
+
+### 4. Verify Deployment
+
+```bash
+kubectl get pods
+kubectl get services
+```
+
+### 5. Access the Application
+
+```bash
+# Port forward to access locally
+kubectl port-forward svc/auth-frontend-service 8080:80
+kubectl port-forward svc/auth-backend-service 3000:8000
+```
+
+Access the application at:
+- **Frontend**: http://localhost:8080
+- **Backend API**: http://localhost:3000
+- **Swagger UI**: http://localhost:3000/swagger-ui
 
 ---
 
 ## 🛠️ Tech Stack
-- **Backend:** Rust, Axum, Tokio, bcrypt, jsonwebtoken, utoipa (OpenAPI)
-- **Frontend:** React, TypeScript, Axios, React Router
+
+| Component | Technology | Purpose |
+|-----------|------------|---------|
+| **Orchestration** | Kubernetes | Container orchestration |
+| **CI/CD** | GitHub Actions | Automated builds |
+| **Registry** | GitHub Container Registry | Image storage |
+| **Optimization** | Docker Slim | Image size reduction |
+| **Backend** | Rust + Axum | High-performance API |
+| **Frontend** | React + TypeScript | Modern UI |
 
 ---
 
-## 📦 Getting Started
+## 🔄 CI/CD Pipeline
 
-### Prerequisites
-- [Rust](https://www.rust-lang.org/tools/install)
-- [Node.js & npm](https://nodejs.org/)
+The project includes automated CI/CD with GitHub Actions:
 
-### 1. Clone the repository
-```sh
-git clone https://github.com/eva672/auth_api2.git
-cd auth_api2
-```
-
-### 2. Setup Environment Variables
-Create a `.env` file in the root with:
-```env
-JWT_SALT=your_base64_16byte_salt
-JWT_SECRET=your_jwt_secret
-JWT_EXPIRATION=86400
-```
-- Generate a 16-byte salt and encode it in base64 (e.g., `openssl rand -base64 16`)
-
-### 3. Run the Backend
-```sh
-cargo run
-```
-- The backend will start on `authapi2-production.up.railway.app`
-
-### 4. Run the Frontend
-```sh
-cd front-end
-npm install
-npm start
-```
-- The frontend will start on `authapi2-production.up.railway.app` or `http://localhost:3001`
+- **Automated Builds**: Triggered on main branch pushes
+- **Docker Images**: Multi-stage builds with optimization
+- **Image Slimming**: Docker Slim integration for reduced sizes
+- **Registry Push**: Automatic deployment to GitHub Container Registry
 
 ---
 
-## 📖 API Documentation
-- Swagger UI available at `/swagger-ui` when backend is running.
+## 🧠 My Learning Journey
+
+This project represents my continued growth in infrastructure and Kubernetes deployment. Before this, I started my infrastructure journey with my first Kubernetes deployment:
+
+### 🚀 [Simple Web App with Kubernetes](https://github.com/lele-maxwell/simple-web-app.git)
+
+My first step into Kubernetes was deploying a simple web server using **k3s** and basic manifests. That project demonstrated:
+- ✅ Creating a Dockerized web application
+- ✅ Writing Kubernetes Deployment and Service manifests  
+- ✅ Deploying to a local k3s cluster using `kubectl`
+- ✅ Exposing the app using NodePort and accessing via browser
+
+> 💡 **Keep Going!**  
+> Every complex infrastructure starts with a simple `kubectl apply`.  
+> You're on the right path—keep experimenting, keep learning, and don't be afraid to break things!
 
 ---
 
-## 🖥️ Screenshots
-> ![Login UI](./screenshots/login.png)
-> ![Profile UI](./screenshots/profile.png)
+## ✍️ Author
+
+**Lele Maxwell**
+
+This project marks another milestone in my Kubernetes learning journey, building upon my foundational experience. From simple web apps to fullstack authentication APIs - stay tuned for more!
 
 ---
 
-## 🤝 Contributing
-1. Fork the repo
-2. Create your feature branch (`git checkout -b feature/your-feature`)
-3. Commit your changes (`git commit -am 'Add new feature'`)
-4. Push to the branch (`git push origin feature/your-feature`)
-5. Open a Pull Request
+## 🧊 License
+
+This project is open-source and free to use.
 
 ---
 
-## 📄 License
-This project is licensed under the MIT License.
-
----
-
-## 🙏 Acknowledgements
-- [Rust](https://www.rust-lang.org/)
-- [Axum](https://github.com/tokio-rs/axum)
-- [React](https://react.dev/)
-- [Utoipa](https://github.com/juhaku/utoipa)
-
----
-
-> Made with ❤️ by eva672
+> Made with by Lele Maxwell
