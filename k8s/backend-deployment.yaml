@@ -17,6 +17,7 @@ spec:
       containers:
         - name: auth-backend
           image: ghcr.io/lele-maxwell/auth-backend:slim
+          imagePullPolicy: Always
           ports:
             - containerPort: 8000
           envFrom:
