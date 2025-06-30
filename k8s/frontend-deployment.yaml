@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: auth-frontend
-          image: ghcr.io/lele-maxwell/auth-frontend:slim
+          image: ghcr.io/lele-maxwell/auth-frontend:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 80
