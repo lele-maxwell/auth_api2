@@ -46,6 +46,6 @@ async fn main() {
         )
         .with_state(state);
     println!("Server is running on http://10.223.54.148:30080/swagger-ui/"); 
-    let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await.unwrap();
+    let listener = tokio::net::TcpListener::bind("0.0.0.0:8000").await.unwrap();
     axum::serve(listener, app).await.unwrap();
 }
