@@ -52,14 +52,6 @@ jobs:
         run: |
           docker build -f front-end/Dockerfile.frontend -t ghcr.io/${{ github.repository_owner }}/auth-frontend:latest ./front-end
 
-      - name: Slim frontend Docker image
-        uses: kitabisa/docker-slim-action@v1
-        env:
-          DSLIM_HTTP_PROBE: "false"
-        with:
-          target: ghcr.io/${{ github.repository_owner }}/auth-frontend:latest
-          tag: slim
-
-      - name: Push slimmed frontend Docker image
+      - name: Push frontend Docker image
         run: |
-          docker push ghcr.io/${{ github.repository_owner }}/auth-frontend:slim 
+          docker push ghcr.io/${{ github.repository_owner }}/auth-frontend:latest 
