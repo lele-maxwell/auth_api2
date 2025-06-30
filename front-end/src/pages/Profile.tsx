@@ -2,7 +2,7 @@ import React, { useEffect, useState, MouseEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ProtectedApi, Configuration, User } from '../api';
 
-const apiBasePath = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+const apiBasePath = process.env.REACT_APP_API_URL || 'http://10.223.54.148:30080';
 const protectedApi = new ProtectedApi(new Configuration({ basePath: apiBasePath }));
 
 const SESSION_DURATION_MS = 10 * 60 * 1000; // 10 minutes

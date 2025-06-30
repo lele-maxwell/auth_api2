@@ -2,7 +2,7 @@ import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { AuthApi, Configuration } from '../api';
 
-const apiBasePath = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+const apiBasePath = process.env.REACT_APP_API_URL || 'http://10.223.54.148:30080';
 const authApi = new AuthApi(new Configuration({ basePath: apiBasePath }));
 
 export default function Login() {

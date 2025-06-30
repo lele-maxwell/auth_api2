@@ -1,9 +1,10 @@
 use std::sync::{ Arc, Mutex };
 
 use axum::{ routing::{ get, post }, Router };
-use tower_http::cors::CorsLayer;
+use tower_http::cors::{CorsLayer, Any};
 use utoipa::OpenApi;
 use utoipa_swagger_ui::SwaggerUi;
+use axum::http::{HeaderValue, Method};
 
 pub mod middleware;
 pub mod models; 
@@ -37,9 +38,14 @@ async fn main() {
         .merge(SwaggerUi::new("/swagger-ui").url("/api-docs/openapi.json", ApiDoc::openapi()))
         .route("/login", post(auth::login))
         .route("/register", post(auth::register))
-        .layer(CorsLayer::permissive())
+        .layer(
+            CorsLayer::new()
+                .allow_origin("http://10.223.54.148:30081".parse::<HeaderValue>().unwrap())
+                .allow_methods([Method::GET, Method::POST, Method::PUT, Method::DELETE])
+                .allow_headers(Any)
+        )
         .with_state(state);
-    println!("Server is running on https://authapi2-production.up.railway.app/swagger-ui/"); 
+    println!("Server is running on http://10.223.54.148:30080/swagger-ui/"); 
     let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await.unwrap();
     axum::serve(listener, app).await.unwrap();
 }
