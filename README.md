@@ -80,8 +80,8 @@ kubectl port-forward svc/auth-backend-service 3000:8000
 
 Access the application at:
 - **Frontend**: http://localhost:8080
-- **Backend API**: http://localhost:3000
-- **Swagger UI**: http://localhost:3000/swagger-ui
+- **Backend API**: http://10.223.54.148:30080/
+- **Swagger UI**: http://10.223.54.148:30080/swagger-ui/
 
 ---
 
